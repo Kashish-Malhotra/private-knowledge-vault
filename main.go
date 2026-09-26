@@ -3,20 +3,14 @@ package main
 import (
 	"log"
 	"net/http"
+	"private-knowledge-vault/routes"
 )
 
 func main() {
 	log.Println("Private Knowledge Vault started")
-	http.HandleFunc("/health", healthCheckHandler)
+	routes.SetupRoutes()
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
-
-
-func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Status : OK"))
-		log.Println(r.Method)
-		log.Println(r.URL.Path)
-	}
