@@ -8,8 +8,8 @@ import (
 
 func main() {
 	log.Println("Private Knowledge Vault started")
-	routes.SetupRoutes()
-	err := http.ListenAndServe(":8080", nil)
+	mux := routes.SetupRoutes()
+	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		log.Fatal(err)
 	}
